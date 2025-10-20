@@ -1,0 +1,99 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: rgb(16, 2, 48);
+  color: white;
+}
+
+.container{
+  background-color: rgba(255,255,255,0.03);
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 26px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+#submit{
+  background-color: rgb(3, 132, 3);
+  color: white;
+  font-weight: 700;
+  display: inline-block;
+  margin-top: 10px;
+  outline: none;
+  border: none;
+  width: 200px;
+  height: 42px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 180ms ease, background-color 180ms ease;
+}
+#submit:hover{
+  transform: translateY(-2px);
+  background-color: rgb(0, 200, 0);
+}
+
+#username{
+  width: 320px;
+  height: 36px;
+  border-radius: 6px;
+  outline: none;
+  border: 1px solid rgba(255,255,255,0.25);
+  margin-top: 12px;
+  display: block;
+  padding: 6px 10px;
+  background: rgba(255,255,255,0.02);
+  color: white;
+  margin: auto;
+}
+
+/* Activities list animation */
+.activities-wrapper{
+  overflow: hidden;
+}
+
+@keyframes fadeSlideIn {
+  0% { opacity: 0; transform: translateY(12px); }
+  60% { opacity: 0.8; transform: translateY(-6px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.activities-enter {
+  animation: fadeSlideIn 420ms cubic-bezier(.22,.9,.32,1) both;
+}
+
+/* Staggered list items */
+ul.activities {
+  list-style: disc;
+  margin-left: 20px;
+  padding-left: 0;
+}
+ul.activities li{
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeSlideIn 420ms cubic-bezier(.22,.9,.32,1) forwards;
+}
+/* stagger using nth-child delays */
+ul.activities li:nth-child(1){ animation-delay: 0.05s; }
+ul.activities li:nth-child(2){ animation-delay: 0.12s; }
+ul.activities li:nth-child(3){ animation-delay: 0.20s; }
+ul.activities li:nth-child(4){ animation-delay: 0.28s; }
+ul.activities li:nth-child(5){ animation-delay: 0.36s; }
+ul.activities li:nth-child(6){ animation-delay: 0.44s; }
+ul.activities li:nth-child(7){ animation-delay: 0.52s; }
+ul.activities li:nth-child(8){ animation-delay: 0.60s; }
+ul.activities li:nth-child(9){ animation-delay: 0.68s; }
+ul.activities li:nth-child(10){ animation-delay: 0.76s; }
+
+/* Cap the visible area nicely */
+.activities-box{
+  margin-top: 18px;
+  max-height: 320px;
+  overflow-y: auto;
+  padding: 12px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.02);
+  text-align: left;
+}

@@ -2,14 +2,15 @@ import requests
 import json
 import time
 
-def fetch_github_data():
+
+def fetch_github_data(username):
     try:
-        username = input("Enter your Githhub username: ")
         url = f"https://api.github.com/users/{username}/events"
         for i in range(5):
             response = requests.get(url)
             if response.status_code == 200:
                 events = response.json()
+                activities = []
                 for event in events:
                     event_type = event.get("type")
                     repo = event.get("repo", {}).get("name")
@@ -24,14 +25,13 @@ def fetch_github_data():
                         message = "Forked a repository"
                     else:
                         message = event_type
-                    print(f"[{date}] {message} — {repo}")
+                    recent_activity = f"[{date}] {message} — {repo}"
+                    activities.append(recent_activity)
+                return activities
             elif response.status_code == 429:
                 time.sleep(60)
-                print("Rate limit exceeded, retry after some time..")
+                return ["Rate limit exceeded, retry after some time.."]
             else:
-                print(f"Failed to fetch data: {response.status_code}")
-                return None
+                return [f"Failed to fetch data: {response.status_code}"]
     except Exception as e:
-        print(f"An error occurred: {e}")
-
-fetch_github_data()
+        return [f"An error occurred: {e}"]

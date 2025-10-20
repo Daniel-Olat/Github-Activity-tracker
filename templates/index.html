@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Use Flask static folder for CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <title>GitTrack</title>
+</head>
+<body>
+  <div class="container">
+    <form action="/" method = "post">
+      <h1>GIT TRACK </h1>
+      <label for="username">Enter Github username to recent activity: </label>
+      <input type="text" id="username" name = "username"  required>
+      <button type="submit" id="submit">Submit Username</button>
+    </form>
+    <h2>Recent Activities: </h2>
+    <div class="activities-wrapper">
+      <div class="activities-box">
+        {% if activities %}
+          <ul class="activities">
+            {% for activity in activities %}
+            <li>{{ activity }}</li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p>No recent activities</p>
+        {% endif %}
+      </div>
+    </div>
+    
+  </div>
+</body>
+</html>

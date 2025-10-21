@@ -1,6 +1,5 @@
 Flask
 gunicorn
 requests
-render_template_string
 time
 json
